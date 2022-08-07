@@ -1,0 +1,19 @@
+{
+  "name": "2d-platform-game",
+  "version": "0.0.0",
+  "description": "2D Platform game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmartineztdl/2d-platform-game.git"
+  },
+  "author": "Carlos Martínez González",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmartineztdl/2d-platform-game/issues"
+  },
+  "homepage": "https://github.com/cmartineztdl/2d-platform-game#readme"
+}
