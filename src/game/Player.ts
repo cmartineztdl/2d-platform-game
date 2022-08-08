@@ -1,8 +1,10 @@
 import { Game } from './Game'
+import playerSpritesheet from '../assets/spritesheets/player.png'
 
 export class Player {
   private x: number = 0
   private size: number = 50
+  private image: HTMLImageElement = new Image()
 
   constructor(private game: Game) {}
 
@@ -20,5 +22,12 @@ export class Player {
       this.size,
       this.size
     )
+  }
+
+  loadAssets(): Promise<void> {
+    return new Promise((resolve) => {
+      this.image.src = playerSpritesheet
+      this.image.onload = () => resolve()
+    })
   }
 }

@@ -43,7 +43,9 @@ export class Game {
     return deltaTime
   }
 
-  public start() {
+  public async start() {
+    await this.player.loadAssets()
+
     this.animate()
   }
 }
