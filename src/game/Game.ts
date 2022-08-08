@@ -1,8 +1,10 @@
+import { InputHandler } from './InputHandler'
 import { Player } from './Player'
 
 export class Game {
   private lastTimestamp: number = 0
   private player: Player
+  public inputHandler: InputHandler
 
   constructor(
     public width: number,
@@ -10,6 +12,7 @@ export class Game {
     public context: CanvasRenderingContext2D
   ) {
     this.player = new Player(this)
+    this.inputHandler = new InputHandler()
 
     this.animate = this.animate.bind(this)
   }

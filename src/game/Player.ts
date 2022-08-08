@@ -1,5 +1,6 @@
 import { Game } from './Game'
 import playerSpritesheet from '../assets/spritesheets/player.png'
+import { ACTION } from './InputHandler'
 
 export class Player {
   private x: number
@@ -22,10 +23,15 @@ export class Player {
   }
 
   update(deltaTime: number) {
-    this.x += deltaTime * this.speedX
-    if (this.x > this.game.width) {
-      this.x = 0 - this.width
+    if (this.game.inputHandler.getIsActionActive(ACTION.LEFT)) {
+      this.x -= deltaTime * this.speedX
     }
+    if (this.game.inputHandler.getIsActionActive(ACTION.RIGHT)) {
+      this.x += deltaTime * this.speedX
+    }
+
+    this.x = Math.max(0, this.x)
+    this.x = Math.min(this.game.width - this.width, this.x)
   }
 
   draw() {
