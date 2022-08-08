@@ -5,6 +5,7 @@
 * `npm start`: compiles the application and opens it in the browser
 * `npm run build`: makes the application build
 * `npm test`: runs application tests
+* `npm run test:watch`: runs application tests in watch mode
 
 ## Commit naming - Semantic Commit Messages
 
