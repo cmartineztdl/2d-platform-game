@@ -23,8 +23,7 @@ export class Game {
   }
 
   private animate(timestamp: number = 0) {
-    const deltaTime = timestamp - this.lastTimestamp
-    this.lastTimestamp = timestamp
+    const deltaTime = this.calculateDeltaTime(timestamp)
 
     this.clearContext()
 
@@ -36,6 +35,12 @@ export class Game {
 
   private clearContext() {
     this.context.clearRect(0, 0, this.width, this.height)
+  }
+
+  private calculateDeltaTime(timestamp: number): number {
+    const deltaTime = timestamp - this.lastTimestamp
+    this.lastTimestamp = timestamp
+    return deltaTime
   }
 
   public start() {
