@@ -1,30 +1,25 @@
+import { Player } from './Player'
+
 export class Game {
   private lastTimestamp: number = 0
-  private x: number = 0
-  private size: number = 50
+  private player: Player
 
   constructor(
-    private width: number,
-    private height: number,
-    private context: CanvasRenderingContext2D
+    public width: number,
+    public height: number,
+    public context: CanvasRenderingContext2D
   ) {
+    this.player = new Player(this)
+
     this.animate = this.animate.bind(this)
   }
 
   private update(deltaTime: number) {
-    this.x += deltaTime * 0.5
-    if (this.x > this.width) {
-      this.x = 0
-    }
+    this.player.update(deltaTime)
   }
 
   private draw() {
-    this.context.fillRect(
-      this.x,
-      (this.height - this.size) / 2,
-      this.size,
-      this.size
-    )
+    this.player.draw()
   }
 
   private animate(timestamp: number = 0) {
