@@ -26,12 +26,16 @@ export class Game {
     const deltaTime = timestamp - this.lastTimestamp
     this.lastTimestamp = timestamp
 
-    this.context.clearRect(0, 0, this.width, this.height)
+    this.clearContext()
 
     this.update(deltaTime)
     this.draw()
 
     requestAnimationFrame(this.animate)
+  }
+
+  private clearContext() {
+    this.context.clearRect(0, 0, this.width, this.height)
   }
 
   public start() {
