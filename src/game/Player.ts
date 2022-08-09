@@ -29,11 +29,9 @@ export class Player {
   update(deltaTime: number) {
     if (this.game.inputHandler.getIsActionActive(ACTION.LEFT)) {
       this.speedX = -this.maxSpeedX
-    }
-    else if (this.game.inputHandler.getIsActionActive(ACTION.RIGHT)) {
+    } else if (this.game.inputHandler.getIsActionActive(ACTION.RIGHT)) {
       this.speedX = this.maxSpeedX
-    }
-    else {
+    } else {
       this.speedX = 0
     }
     this.x += deltaTime * this.speedX
