@@ -26,7 +26,7 @@ export class Player {
     this.y = this.game.height - this.height
   }
 
-  update(deltaTime: number) {
+  public update(deltaTime: number) {
     if (this.game.inputHandler.getIsActionActive(ACTION.LEFT)) {
       this.speedX = -this.maxSpeedX
     } else if (this.game.inputHandler.getIsActionActive(ACTION.RIGHT)) {
@@ -54,7 +54,7 @@ export class Player {
     }
   }
 
-  draw() {
+  public draw() {
     this.game.context.drawImage(
       this.spriteSheetImage,
       this.spriteSheetFrameX * this.spriteSheetFrameWidth,
@@ -68,7 +68,7 @@ export class Player {
     )
   }
 
-  loadAssets(): Promise<void> {
+  public loadAssets(): Promise<void> {
     return new Promise((resolve) => {
       this.spriteSheetImage.src = playerSpritesheet
       this.spriteSheetImage.onload = () => resolve()
