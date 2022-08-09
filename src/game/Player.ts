@@ -15,6 +15,9 @@ export class Player {
   private spriteSheetFramey: number = 0
   private speedX: number = 0
   private maxSpeedX: number = 0.3
+  private speedY: number = 0
+  private maxSpeedY: number = 2.5
+  private weight: number = 0.01
 
   constructor(private game: Game) {
     this.width = this.spriteSheetFrameWidth * this.scale
@@ -33,10 +36,24 @@ export class Player {
     else {
       this.speedX = 0
     }
-
     this.x += deltaTime * this.speedX
     this.x = Math.max(0, this.x)
     this.x = Math.min(this.game.width - this.width, this.x)
+
+    if (
+      this.isOnGround &&
+      this.game.inputHandler.getIsActionActive(ACTION.UP)
+    ) {
+      this.speedY = -this.maxSpeedY
+    }
+
+    this.y += deltaTime * this.speedY
+    this.y = Math.max(0, this.y)
+    this.y = Math.min(this.game.height - this.height, this.y)
+
+    if (!this.isOnGround) {
+      this.speedY = this.speedY + this.weight * deltaTime
+    }
   }
 
   draw() {
@@ -58,5 +75,9 @@ export class Player {
       this.spriteSheetImage.src = playerSpritesheet
       this.spriteSheetImage.onload = () => resolve()
     })
+  }
+
+  private get isOnGround() {
+    return this.y >= this.game.height - this.height
   }
 }
