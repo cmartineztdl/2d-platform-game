@@ -13,7 +13,8 @@ export class Player {
   private spriteSheetImage: HTMLImageElement = new Image()
   private spriteSheetFrameX: number = 0
   private spriteSheetFramey: number = 0
-  private speedX: number = 0.3
+  private speedX: number = 0
+  private maxSpeedX: number = 0.3
 
   constructor(private game: Game) {
     this.width = this.spriteSheetFrameWidth * this.scale
@@ -24,12 +25,16 @@ export class Player {
 
   update(deltaTime: number) {
     if (this.game.inputHandler.getIsActionActive(ACTION.LEFT)) {
-      this.x -= deltaTime * this.speedX
+      this.speedX = -this.maxSpeedX
     }
-    if (this.game.inputHandler.getIsActionActive(ACTION.RIGHT)) {
-      this.x += deltaTime * this.speedX
+    else if (this.game.inputHandler.getIsActionActive(ACTION.RIGHT)) {
+      this.speedX = this.maxSpeedX
+    }
+    else {
+      this.speedX = 0
     }
 
+    this.x += deltaTime * this.speedX
     this.x = Math.max(0, this.x)
     this.x = Math.min(this.game.width - this.width, this.x)
   }
