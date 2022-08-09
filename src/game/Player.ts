@@ -49,9 +49,7 @@ export class Player {
     this.y = Math.max(0, this.y)
     this.y = Math.min(this.game.height - this.height, this.y)
 
-    if (!this.isOnGround) {
-      this.speedY = this.speedY + this.weight * deltaTime
-    }
+    this.speedY = this.isOnGround ? 0 : this.speedY + this.weight * deltaTime
   }
 
   public draw() {
