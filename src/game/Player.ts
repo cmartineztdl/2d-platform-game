@@ -28,8 +28,8 @@ export class Player implements PlayerState {
   private speedX: number = 0
   private maxSpeedX: number = 0.3
   private speedY: number = 0
-  private maxSpeedY: number = 2.5
-  private weight: number = 0.01
+  private maxSpeedY: number = 1.5
+  private weight: number = 0.005
   private states: { [key in StateName]: State }
   private currentState: State
 
