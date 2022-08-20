@@ -5,6 +5,7 @@ export class Game {
   private lastTimestamp: number = 0
   private player: Player
   public inputHandler: InputHandler
+  public groundMargin: number = 50
 
   constructor(
     public width: number,

@@ -37,7 +37,7 @@ export class Player implements PlayerState {
     this.width = this.spriteSheetFrameWidth * this.scale
     this.height = this.spriteSheetFrameHeight * this.scale
     this.x = 0
-    this.y = this.game.height - this.height
+    this.y = this.game.height - this.height - this.game.groundMargin
 
     this.states = {
       sitting: new SittingState(this),
@@ -71,7 +71,10 @@ export class Player implements PlayerState {
 
     this.y += deltaTime * this.speedY
     this.y = Math.max(0, this.y)
-    this.y = Math.min(this.game.height - this.height, this.y)
+    this.y = Math.min(
+      this.game.height - this.height - this.game.groundMargin,
+      this.y
+    )
 
     this.speedY = this.isOnGround ? 0 : this.speedY + this.weight * deltaTime
 
@@ -110,7 +113,7 @@ export class Player implements PlayerState {
   }
 
   public get isOnGround() {
-    return this.y >= this.game.height - this.height
+    return this.y >= this.game.height - this.height - this.game.groundMargin
   }
 
   public setSpritesheetFrames(
