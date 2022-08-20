@@ -7,7 +7,7 @@ export class Game {
   private background: Background
   private player: Player
   public inputHandler: InputHandler
-  public groundMargin: number = 50
+  public groundMargin: number = 80
   public speed: number = 0
 
   constructor(
