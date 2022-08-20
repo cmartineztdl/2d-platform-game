@@ -10,6 +10,7 @@ export interface Player {
   setState: (stateName: StateName) => void
   isOnGround: boolean
   isFalling: boolean
+  setGameSpeed: (speed: number) => void
 }
 
 export abstract class State {
@@ -26,6 +27,7 @@ export class SittingState extends State {
 
   enter() {
     this.player.setSpritesheetFrames(0, 5)
+    this.player.setGameSpeed(0)
   }
 
   handleInput(inputHandler: InputHandler) {
@@ -51,6 +53,7 @@ export class RunningState extends State {
 
   enter() {
     this.player.setSpritesheetFrames(0, 3)
+    this.player.setGameSpeed(1)
   }
 
   handleInput(inputHandler: InputHandler) {
@@ -74,6 +77,7 @@ export class JumpingState extends State {
 
   enter() {
     this.player.setSpritesheetFrames(0, 1)
+    this.player.setGameSpeed(1)
   }
 
   handleInput(inputHandler: InputHandler) {
@@ -98,6 +102,7 @@ export class FallingState extends State {
 
   enter() {
     this.player.setSpritesheetFrames(0, 2)
+    this.player.setGameSpeed(1)
   }
 
   handleInput(inputHandler: InputHandler) {

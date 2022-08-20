@@ -48,7 +48,7 @@ class Layer {
   ) {}
 
   update(deltaTime: number) {
-    this.x -= this.speedModifier * deltaTime * 0.2
+    this.x -= this.speedModifier * deltaTime * this.game.speed * 0.3
 
     if (this.x < -this.width) {
       this.x += this.width

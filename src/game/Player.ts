@@ -129,6 +129,10 @@ export class Player implements PlayerState {
     this.currentState.enter()
   }
 
+  public setGameSpeed(speed: number) {
+    this.game.speed = speed
+  }
+
   public get isFalling(): boolean {
     return this.speedY > 0
   }
