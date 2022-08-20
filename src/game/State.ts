@@ -1,6 +1,6 @@
 import { ACTION, InputHandler } from './InputHandler'
 
-export type StateName = 'sitting' | 'running' | 'jumping'
+export type StateName = 'sitting' | 'running' | 'jumping' | 'falling'
 
 export interface Player {
   setSpritesheetFrames: (
@@ -9,6 +9,7 @@ export interface Player {
   ) => void
   setState: (stateName: StateName) => void
   isOnGround: boolean
+  isFalling: boolean
 }
 
 export abstract class State {
@@ -84,6 +85,24 @@ export class JumpingState extends State {
       this.player.setState('sitting')
     } else if (this.player.isOnGround) {
       this.player.setState('sitting')
+    } else if (this.player.isFalling) {
+      this.player.setState('falling')
+    }
+  }
+}
+
+export class FallingState extends State {
+  constructor(player: Player) {
+    super('falling', player)
+  }
+
+  enter() {
+    this.player.setSpritesheetFrames(0, 2)
+  }
+
+  handleInput(inputHandler: InputHandler) {
+    if (this.player.isOnGround) {
+      this.player.setState('running')
     }
   }
 }

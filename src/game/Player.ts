@@ -8,6 +8,7 @@ import {
   SittingState,
   RunningState,
   JumpingState,
+  FallingState,
 } from './State'
 
 export class Player implements PlayerState {
@@ -42,6 +43,7 @@ export class Player implements PlayerState {
       sitting: new SittingState(this),
       running: new RunningState(this),
       jumping: new JumpingState(this),
+      falling: new FallingState(this),
     }
     this.setState('sitting')
   }
@@ -122,5 +124,9 @@ export class Player implements PlayerState {
   public setState(stateName: StateName) {
     this.currentState = this.states[stateName]
     this.currentState.enter()
+  }
+
+  public get isFalling(): boolean {
+    return this.speedY > 0
   }
 }
