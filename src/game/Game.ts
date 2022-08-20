@@ -1,8 +1,10 @@
+import { Background } from './Background'
 import { InputHandler } from './InputHandler'
 import { Player } from './Player'
 
 export class Game {
   private lastTimestamp: number = 0
+  private background: Background
   private player: Player
   public inputHandler: InputHandler
   public groundMargin: number = 50
@@ -12,6 +14,7 @@ export class Game {
     public height: number,
     public context: CanvasRenderingContext2D
   ) {
+    this.background = new Background(this)
     this.player = new Player(this)
     this.inputHandler = new InputHandler()
 
@@ -19,10 +22,12 @@ export class Game {
   }
 
   private update(deltaTime: number) {
+    this.background.update(deltaTime)
     this.player.update(deltaTime)
   }
 
   private draw() {
+    this.background.draw()
     this.player.draw()
   }
 
@@ -48,6 +53,7 @@ export class Game {
   }
 
   public async start() {
+    await this.background.loadAssets()
     await this.player.loadAssets()
 
     this.animate()
